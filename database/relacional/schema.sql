@@ -1,5 +1,5 @@
 create table usuario (
-	id_usuario int not null,
+	id_usuario int not null auto_increment,
 	nome varchar(50) not null,
 	email varchar(100) not null,
 	genero varchar(10) not null,
@@ -11,7 +11,7 @@ create table usuario (
 
 
 create table amizade (
-	id_amizade int not null,
+	id_amizade int not null auto_increment,
 	id_usuario1 int not null,
 	id_usuario2 int not null,
 	primary key (id_amizade),
@@ -22,7 +22,7 @@ create table amizade (
 
 
 create table ebook (
-	id_ebook int not null,
+	id_ebook int not null auto_increment,
 	id_usuario int not null,
 	titulo varchar(50) not null,
 	sinopse varchar(300) not null,
@@ -35,7 +35,7 @@ create table ebook (
 
 
 create table compra (
-	id_compra int not null,
+	id_compra int not null auto_increment,
 	id_usuario int not null,
 	id_ebook int not null,
 	valor decimal not null,
@@ -48,7 +48,7 @@ create table compra (
 
 
 create table endereco (
-	id_endereco int not null,
+	id_endereco int not null auto_increment,
 	id_usuario int not null,
 	cidade varchar(50) not null,
 	bairro varchar(50) not null,
@@ -61,14 +61,14 @@ create table endereco (
 
 
 create table genero (
-	id_genero int not null,
+	id_genero int not null auto_increment,
 	tipo varchar(20) not null,
 	primary key (id_genero)
 );
 
 
 create table livro (
-	id_livro int not null,
+	id_livro int not null auto_increment,
 	titulo varchar(50) not null,
 	descricao varchar(300) not null,
 	autor varchar(50) not null,
@@ -77,7 +77,7 @@ create table livro (
 
 
 create table anuncio (
-	id_anuncio int not null,
+	id_anuncio int not null auto_increment,
 	id_usuario int not null,
 	id_livro int not null,
 	descricao varchar(300) not null,
@@ -90,7 +90,7 @@ create table anuncio (
 
 
 create table genero_ebook (
-	id_genero_ebook int not null,
+	id_genero_ebook int not null auto_increment,
 	id_genero int not null,
 	id_ebook int not null,
 	primary key (id_genero_ebook),
@@ -101,7 +101,7 @@ create table genero_ebook (
 
 
 create table genero_livro (
-	id_genero_livro int not null,
+	id_genero_livro int not null auto_increment,
 	id_genero int not null,
 	id_livro int not null,
 	primary key (id_genero_livro),
@@ -112,7 +112,7 @@ create table genero_livro (
 
 
 create table moderador (
-	id_moderador int not null,
+	id_moderador int not null auto_increment,
 	nome varchar(50) not null,
 	email varchar(100) not null,
 	senha varchar(50) not null,
@@ -123,7 +123,7 @@ create table moderador (
 
 
 create table denuncia (
-	id_denuncia int not null,
+	id_denuncia int not null auto_increment,
 	id_usuario int not null,
 	id_anuncio int,
 	id_ebook int,
@@ -139,7 +139,7 @@ create table denuncia (
 
 
 create table oferta (
-	id_oferta int not null,
+	id_oferta int not null auto_increment,
 	id_usuario int not null,
 	id_anuncio int not null,
 	id_livro int not null,
@@ -153,7 +153,7 @@ create table oferta (
 
 
 create table suspensao_ebook (
-	id_suspensao_ebook int not null,
+	id_suspensao_ebook int not null auto_increment,
 	id_ebook int not null,
 	id_moderador int not null,
 	motivo varchar(100) not null,
@@ -165,7 +165,7 @@ create table suspensao_ebook (
 
 
 create table suspensao_usuario (
-	id_suspensao_usuario int not null,
+	id_suspensao_usuario int not null auto_increment,
 	id_usuario int not null,
 	id_moderador int not null,
 	motivo varchar(100) not null,
@@ -177,7 +177,7 @@ create table suspensao_usuario (
 
 
 create table lista_desejos_ebook (
-	id_lista_ebook int not null,
+	id_lista_ebook int not null auto_increment,
 	id_usuario int not null,
 	id_ebook int not null,
 	primary key (id_lista_ebook),
@@ -188,7 +188,7 @@ create table lista_desejos_ebook (
 
 
 create table lista_desejos_livro (
-	id_lista_livro int not null,
+	id_lista_livro int not null auto_increment,
 	id_usuario int not null,
 	id_livro int not null,
 	primary key (id_lista_livro),
