@@ -9,7 +9,7 @@ public class MainController {
     // Chama a página inicial do Booked quando o programa é executado
     @RequestMapping("/")
     public String index() {
-        return "index.html";
+        return "/html/index.html";
     }
 
 }
