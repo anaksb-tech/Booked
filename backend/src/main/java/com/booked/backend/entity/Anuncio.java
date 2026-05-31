@@ -25,7 +25,7 @@ public class Anuncio {
     @JoinColumn(name = "id_usuario", nullable = false)
     private Usuario usuario;
 
-    @ManyToOne(fetch = FetchType.EAGER)
+    @ManyToOne
     @JoinColumn(name = "id_livro", nullable = false)
     private Livro livro;
 

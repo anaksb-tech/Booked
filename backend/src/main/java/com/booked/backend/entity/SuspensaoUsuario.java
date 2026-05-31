@@ -5,51 +5,38 @@ import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
 import java.time.LocalDateTime;
 
 @Entity
-public class Denuncia {
+public class SuspensaoUsuario {
 
     //Atributos
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
-    private Integer idDenuncia;
+    private Integer idSuspensaoUsuario;
 
-    @ManyToOne(fetch = FetchType.LAZY)
+    @ManyToOne
     @JoinColumn(name = "id_usuario", nullable = false)
     @JsonIgnoreProperties({"hibernateLazyInitializer", "handler", "senha"})
     private Usuario usuario;
 
-    @ManyToOne(fetch = FetchType.LAZY)
-    @JoinColumn(name = "id_moderador", nullable = true)
+    @ManyToOne
+    @JoinColumn(name = "id_moderador", nullable = false)
     @JsonIgnoreProperties({"hibernateLazyInitializer", "handler", "senha"})
     private Moderador moderador;
 
-    @ManyToOne(fetch = FetchType.LAZY)
-    @JoinColumn(name = "id_anuncio", nullable = true)
-    @JsonIgnoreProperties({"hibernateLazyInitializer", "handler"})
-    private Anuncio anuncio;
-
-    @ManyToOne(fetch = FetchType.LAZY)
-    @JoinColumn(name = "id_ebook", nullable = true)
-    @JsonIgnoreProperties({"hibernateLazyInitializer", "handler"})
-    private Ebook ebook;
-
+    @Column(name = "motivo", nullable = false, length = 100)
     private String motivo;
+
+    @Column(name = "data_hora", nullable = false)
     private LocalDateTime dataHora;
 
     // Getters
-    public Integer getIdDenuncia() {
-        return idDenuncia;
+    public Integer getIdSuspensaoUsuario() {
+        return idSuspensaoUsuario;
     }
     public Usuario getUsuario() {
         return usuario;
     }
     public Moderador getModerador() {
         return moderador;
-    }
-    public Anuncio getAnuncio() {
-        return anuncio;
-    }
-    public Ebook getEbook() {
-        return ebook;
     }
     public String getMotivo() {
         return motivo;
@@ -59,20 +46,14 @@ public class Denuncia {
     }
 
     // Setters
-    public void setIdDenuncia(Integer idDenuncia) {
-        this.idDenuncia = idDenuncia;
+    public void setIdSuspensaoUsuario(Integer idSuspensaoUsuario) {
+        this.idSuspensaoUsuario = idSuspensaoUsuario;
     }
     public void setUsuario(Usuario usuario) {
         this.usuario = usuario;
     }
     public void setModerador(Moderador moderador) {
         this.moderador = moderador;
-    }
-    public void setAnuncio(Anuncio anuncio) {
-        this.anuncio = anuncio;
-    }
-    public void setEbook(Ebook ebook) {
-        this.ebook = ebook;
     }
     public void setMotivo(String motivo) {
         this.motivo = motivo;

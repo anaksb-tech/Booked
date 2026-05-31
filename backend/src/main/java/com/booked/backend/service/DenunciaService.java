@@ -23,14 +23,13 @@ public class DenunciaService {
         return denunciaRepository.findByModeradorIsNull();
     }
 
-    public List<Denuncia> listarPorAnuncio(Integer id_anuncio) {
-        return denunciaRepository.buscarPorIdAnuncio(id_anuncio);
+    public List<Denuncia> listarPorAnuncio(Integer idAnuncio) {
+        return denunciaRepository.findByAnuncio_IdAnuncio(idAnuncio);
     }
 
-    public List<Denuncia> listarPorEbook(Integer id_ebook) {
-        return denunciaRepository.buscarPorIdEbook(id_ebook);
+    public List<Denuncia> listarPorEbook(Integer idEbook) {
+        return denunciaRepository.findByEbook_IdEbook(idEbook);
     }
-
     public Denuncia registrarDenuncia(Denuncia denuncia) {
         boolean temAnuncio = denuncia.getAnuncio() != null;
         boolean temEbook = denuncia.getEbook() != null;

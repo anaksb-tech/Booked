@@ -7,6 +7,7 @@ import java.time.LocalDateTime;
 @Entity
 public class Oferta {
 
+    //Atributos
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Integer idOferta;
@@ -16,12 +17,12 @@ public class Oferta {
     @JsonIgnoreProperties({"hibernateLazyInitializer", "handler", "senha"})
     private Usuario usuario;
 
-    @ManyToOne(fetch = FetchType.EAGER)
+    @ManyToOne
     @JoinColumn(name = "id_anuncio", nullable = false)
     @JsonIgnoreProperties({"hibernateLazyInitializer", "handler"})
     private Anuncio anuncio;
 
-    @ManyToOne(fetch = FetchType.EAGER)
+    @ManyToOne
     @JoinColumn(name = "id_livro", nullable = false)
     @JsonIgnoreProperties({"hibernateLazyInitializer", "handler"})
     private Livro livro;
