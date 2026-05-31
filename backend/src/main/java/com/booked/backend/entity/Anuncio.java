@@ -10,7 +10,8 @@ public class Anuncio {
     // Atributos
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
-    private Integer id_anuncio;
+    @Column(name = "id_anuncio")
+    private Integer idAnuncio;
 
     @Column(columnDefinition = "TEXT")
     private String descricao;
@@ -32,7 +33,7 @@ public class Anuncio {
     //Getters
 
     public Integer getId_anuncio() {
-        return id_anuncio;
+        return idAnuncio;
     }
 
 
@@ -65,7 +66,7 @@ public class Anuncio {
 
     // Setters
     public void setId_anuncio(Integer id_anuncio) {
-        this.id_anuncio = id_anuncio;
+        this.idAnuncio = id_anuncio;
     }
     public void setDescricao(String descricao) {
         this.descricao = descricao;

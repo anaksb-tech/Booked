@@ -11,7 +11,8 @@ public class Livro {
     //Atributos
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
-    private Integer id_livro;
+    @Column(name = "id_livro")
+    private Integer idLivro;
     private String titulo;
     private String autor;
     @Column(columnDefinition = "TEXT")
@@ -29,7 +30,7 @@ public class Livro {
 
     // Getters
     public Integer getId() {
-        return id_livro;
+        return idLivro;
     }
 
     public String getTitulo() {
@@ -50,7 +51,7 @@ public class Livro {
 
     //Setters
     public void setId(Integer id_livro) {
-        this.id_livro = id_livro;
+        this.idLivro = id_livro;
     }
     public void setTitulo(String titulo) {
         this.titulo = titulo;

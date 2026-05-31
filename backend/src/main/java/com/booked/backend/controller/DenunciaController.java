@@ -21,6 +21,7 @@ public class DenunciaController {
         return denunciaService.listarTodas();
     }
 
+    /*
     @GetMapping("/anuncio/{id_anuncio}")
     public List<Denuncia> listarPorAnuncio(@PathVariable Integer id_anuncio) {
         return denunciaService.listarPorAnuncio(id_anuncio);
@@ -30,6 +31,7 @@ public class DenunciaController {
     public List<Denuncia> listarPorEbook(@PathVariable Integer id_ebook) {
         return denunciaService.listarPorEbook(id_ebook);
     }
+    */
 
     @PostMapping("/denuncias")
     public ResponseEntity<?> registrar(@RequestBody Denuncia denuncia) {

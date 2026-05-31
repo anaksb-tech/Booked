@@ -11,7 +11,8 @@ public class Compra {
 
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
-    private Integer id_compra;
+    @Column(name = "id_compra")
+    private Integer idCompra;
 
     @ManyToOne
     @JoinColumn(name = "id_usuario", nullable = false)
@@ -29,8 +30,8 @@ public class Compra {
     private LocalDateTime dataHora;
 
     // Getters
-    public Integer getId_compra() { return id_compra; }
-    public void setId_compra(Integer id_compra) { this.id_compra = id_compra; }
+    public Integer getId_compra() { return idCompra; }
+    public void setId_compra(Integer id_compra) { this.idCompra = id_compra; }
 
     public Usuario getUsuario() { return usuario; }
     public void setUsuario(Usuario usuario) { this.usuario = usuario; }

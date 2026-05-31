@@ -1,9 +1,6 @@
 package com.booked.backend.entity;
 
-import jakarta.persistence.Entity;
-import jakarta.persistence.GeneratedValue;
-import jakarta.persistence.GenerationType;
-import jakarta.persistence.Id;
+import jakarta.persistence.*;
 
 @Entity
 public class Moderador {
@@ -11,7 +8,8 @@ public class Moderador {
     // Atributos
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
-    private Integer id_moderador;
+    @Column(name = "id_moderador")
+    private Integer idModerador;
 
     private String nome;
 

@@ -10,6 +10,7 @@ public class Denuncia {
     //Atributos
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
+    @Column(name = "id_denuncia")
     private Integer idDenuncia;
 
     @ManyToOne(fetch = FetchType.LAZY)

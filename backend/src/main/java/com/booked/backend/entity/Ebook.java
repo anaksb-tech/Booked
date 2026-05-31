@@ -12,7 +12,8 @@ public class Ebook {
     // Atributos
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
-    private Integer id_ebook;
+    @Column(name = "id_ebook")
+    private Integer idEbook;
 
     private String titulo;
 
@@ -35,7 +36,7 @@ public class Ebook {
 
     // Getters
     public Integer getId_ebook() {
-        return id_ebook;
+        return idEbook;
     }
 
     public String getTitulo() {

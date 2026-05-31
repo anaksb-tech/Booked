@@ -10,6 +10,7 @@ public class SuspensaoUsuario {
     //Atributos
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
+    @Column(name = "id_suspensao_usuario")
     private Integer idSuspensaoUsuario;
 
     @ManyToOne
