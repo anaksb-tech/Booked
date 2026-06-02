@@ -26,7 +26,7 @@ document.getElementById("confirmarCadastro").onclick = async function() {
     };
 
     // Envia o usuário pro backend
-    await fetch("http://localhost:8080/cadastrar-usuario", {
+    await fetch("http://localhost:8080/usuario/cadastrar-usuario", {
         method: "POST",
         headers: {"Content-Type": "application/json"},
         body: JSON.stringify(usuario)

@@ -8,7 +8,8 @@ public class Endereco {
     // Atributos
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
-    private Integer id_endereco;
+    @Column(name = "id_endereco")
+    private Integer idEndereco;
 
     private String cidade;
 

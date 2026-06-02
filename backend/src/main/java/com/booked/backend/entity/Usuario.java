@@ -1,9 +1,6 @@
 package com.booked.backend.entity;
 
-import jakarta.persistence.Entity;
-import jakarta.persistence.GeneratedValue;
-import jakarta.persistence.GenerationType;
-import jakarta.persistence.Id;
+import jakarta.persistence.*;
 
 @Entity
 public class Usuario {
@@ -11,7 +8,8 @@ public class Usuario {
     // Atributos
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
-    private Integer id_usuario;
+    @Column(name = "id_usuario")
+    private Integer idUsuario;
 
     private String nome;
 
@@ -25,7 +23,7 @@ public class Usuario {
 
     // Getters
     public Integer getId() {
-        return id_usuario;
+        return idUsuario;
     }
 
     public String getNome() {
@@ -50,7 +48,7 @@ public class Usuario {
 
     // Setters
     public void setId(Integer id_usuario) {
-        this.id_usuario = id_usuario;
+        this.idUsuario = id_usuario;
     }
 
     public void setNome(String nome) {
