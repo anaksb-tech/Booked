@@ -24,18 +24,34 @@ public class UsuarioController {
     }
 
     @PostMapping("/login")
-    public Integer verificarLogin(@RequestBody Usuario credenciais) {
+    public Usuario verificarLogin(@RequestBody Usuario credenciais) {
 
         Usuario usuario = usuarioRepository.findByEmailAndSenha(
                 credenciais.getEmail(),
                 credenciais.getSenha()
         );
 
-        if(usuario == null) {
-            return null;
-        }
+        return usuario;
 
-        return usuario.getId();
+    }
+
+    @GetMapping("/existe/{email}")
+    public Boolean existeUsuario(@PathVariable String email) {
+
+        Usuario usuario = usuarioRepository.findByEmail(email);
+
+        if(usuario == null) {
+            return false;
+        }
+        return true;
+
+    }
+
+    @GetMapping("/buscar/{email}")
+    public Usuario buscarIdUsuario(@PathVariable String email) {
+
+        Usuario usuario = usuarioRepository.findByEmail(email);
+        return usuario;
 
     }
 

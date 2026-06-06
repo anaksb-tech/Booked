@@ -1,4 +1,35 @@
-window.onload = carregarEbooks();
+window.onload = function() {
+
+    carregarEbooks();
+
+    let header = document.getElementById("bemVindo");
+    let botaoCadastrar = document.getElementById("botaoCadastrar");
+    let botaoLogin = document.getElementById("botaoLogin");
+    let botaoPerfil = document.getElementById("botaoPerfil");
+    let botaoSair = document.getElementById("botaoSair");
+
+    // Verificar se o usuário está loggado ou não para formatar a tela
+    if(localStorage.getItem("nomeUsuario") !== null) {
+
+        let nomeUsuario = localStorage.getItem("nomeUsuario");
+        header.textContent = `Bem-vindo ao Booked, ${nomeUsuario}`;
+        botaoCadastrar.style.display = "none";
+        botaoLogin.style.display = "none";
+        botaoPerfil.style.display = "";
+        botaoSair.style.display = "";
+
+    } else {
+
+        header.textContent = `Bem-Vindo ao Booked`;
+        botaoCadastrar.style.display = "";
+        botaoLogin.style.display = "";
+        botaoPerfil.style.display = "none";
+        botaoSair.style.display = "none";
+
+    }
+
+}
+
 document.getElementById("botaoVerEbooks").onclick = carregarEbooks;
 
 async function carregarEbooks() {
@@ -44,5 +75,16 @@ document.getElementById("botaoVerLivros").onclick = async function() {
         lista.appendChild(linha);
 
     })
+
+}
+
+botaoSair.onclick = function() {
+
+    let resposta = confirm("Tem certeza de que quer sair da sua conta?");
+
+    if(resposta) {
+        localStorage.clear();
+        window.location.href = "/html/index.html";
+    }
 
 }

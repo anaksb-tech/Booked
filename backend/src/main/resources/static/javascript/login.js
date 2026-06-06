@@ -17,17 +17,20 @@ document.getElementById("botaoConfirmar").onclick = async function() {
         })
 
     });
+    let texto = await resposta.text();
 
-    // Fazer login se o usuário existir no banco
-    if(resposta === null) {
+    if(texto === "") {
 
-        window.alert("Este usuário não existe.");
+        window.alert("Endereço de email ou senha estão incorretos");
 
     } else {
 
-        const idUsuario = await resposta.json();
-        localStorage.setItem("idUsuario", idUsuario);
+        let usuario = JSON.parse(texto);
+        localStorage.setItem("nomeUsuario", usuario.nome);
+        localStorage.setItem("idUsuario", usuario.id);
+        window.location.href = "/html/index.html";
 
     }
+
 
 }
