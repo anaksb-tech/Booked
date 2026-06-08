@@ -7,14 +7,22 @@ Tipo de operação: Leitura
 
 Arquivos envolvidos:
 <ul>
-  <li>Ebook.java</li>
-  <li>EbookController.java</li>
-  <li>EbookRepository.java</li>
+  <li>
+    <a href="https://github.com/anaksb-tech/Booked/blob/main/backend/src/main/java/com/booked/backend/entity/Ebook.java">Ebook.java</a>
+  </li>
+  <li>
+    <a href="https://github.com/anaksb-tech/Booked/blob/main/backend/src/main/java/com/booked/backend/controller/EbookController.java">EbookController.java</a>
+  </li>
+  <li>
+    <a href="https://github.com/anaksb-tech/Booked/blob/main/backend/src/main/java/com/booked/backend/repository/EbookRepository.java">EbookRepository.java</a>
+  </li>
 </ul>
 
 Arquivos com o código fonte de medição do SLA:
 <ul>
-  <li>teste-cadastro.js</li>
+  <li>
+    <a href="https://github.com/anaksb-tech/Booked/blob/main/backend/src/k6/teste-carregar-ebooks.js">teste-carregar-ebooks.js</a>
+  </li>
 </ul>
 
 Data de medição: 07/06/2026
@@ -55,4 +63,62 @@ Levantamento de Hipoteses:
   </li>
 </ol>
 
+<br>
 
+<h2>Nome do Serviço: Fazer Cadastro de Usuário</h2>
+
+Tipo de operação: Inserção e Leitura
+
+Arquivos envolvidos:
+<ul>
+  <li>
+    <a href="https://github.com/anaksb-tech/Booked/blob/main/backend/src/main/java/com/booked/backend/entity/Usuario.java">Usuario.java</a>
+  </li>
+  <li>
+    <a href="https://github.com/anaksb-tech/Booked/blob/main/backend/src/main/java/com/booked/backend/controller/UsuarioController.java">UsuarioController.java</a>
+  </li>
+  <li>
+    <a href="https://github.com/anaksb-tech/Booked/blob/main/backend/src/main/java/com/booked/backend/repository/UsuarioRepository.java">UsuarioRepository.java</a>
+  </li>
+</ul>
+
+Arquivos com o código fonte de medição do SLA:
+<ul>
+  <li>
+    <a href="https://github.com/anaksb-tech/Booked/blob/main/backend/src/k6/teste-cadastro.js">teste-cadastro.js</a>
+  </li>
+</ul>
+
+Data de medição: 07/06/2026
+
+Descrição das configurações:
+<ul>
+  <li>Ambiente da aplicação: Projeto Java (v21) Spring Boot (v4.0.6) utilizando servidor Tomcat sendo rodado localmente na porta 8080</li>
+  <li>Persistência: Banco de dados local MySQL (v8.0.46) utilizando JPA/Hibernate (v7.2.12) e pool de conexões HikariCP</li>
+  <li>Ambiente de teste: Sistema operacional Linux Mint 22.1, testes realizados localmente pelo terminal, utilizando Grafana k6</li>
+</ul>
+
+Testes de carga (SLA):
+<ul>
+  <li>Latência (tempo de resposta médio - p95): 3.32 ms</li>
+  <li>Vazão: 668 req/s (Total de  requisições realizadas)</li>
+  <li>Concorrência: Até 300 usuários (VUs) simulados simultaneamente</li>
+  <li>Taxa de erros: 0,00% (Sucesso total em todas as respostas)</li>
+</ul>
+
+<img width="1783" height="772" alt="image" src="https://github.com/user-attachments/assets/c666b25a-ee0f-452b-bed5-de7946c2e4ff" />
+<img width="950" height="740" alt="image" src="https://github.com/user-attachments/assets/3d5ff260-89af-4575-89e8-581f4e746bbc" />
+
+<br>
+<br>
+
+Levantamento de hipoteses:
+<ol>
+  <li>
+    Requisição de dados desnecessários: Após realizar o cadastro do usuário, o sistema requisita ao banco de dados todas as informações do usuário para automaticamente fazer login no site, sendo que para ativar o login, o frontend precisa apenas do nome e id do usuário; porém o frontend já possui o nome do usuário, então apenas o id precisa ser requisitado. 
+  </li>
+  <br>
+  <li>
+    Pools de conexão HikariCP: Com uma carga elevada de VUs, pode ocorrer que o número de conexões disponíveis ao HikariCP seja insuficiente, causando aumento gradual na latência das respostas do sistema, devido à criação de filas para o atendimento de requisições.
+  </li>
+</ol>
