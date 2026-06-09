@@ -46,7 +46,7 @@ async function carregarEbooks() {
         const lista = document.getElementById("listaProdutos");
         const linha = document.createElement("li");
         const link = document.createElement("a");
-        link.href = `/html/ebook.html?id=${ebook.id_ebook}`;
+        link.href = `/html/ebook.html?id=${ebook.id}`;
         link.textContent = ebook.titulo;
         linha.appendChild(link);
         lista.appendChild(linha);
