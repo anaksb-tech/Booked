@@ -103,6 +103,9 @@ Arquivos modificados:
     <a href="https://github.com/anaksb-tech/Booked/blob/main/backend/src/main/java/com/booked/backend/controller/EbookController.java">EbookController.java</a>
   </li>
   <li>
+    <a href="https://github.com/anaksb-tech/Booked/blob/main/backend/src/main/java/com/booked/backend/entity/EbookDTO.java">EbookDTO.java</a>
+  </li>
+  <li>
     <a href="https://github.com/anaksb-tech/Booked/blob/main/backend/src/main/resources/static/javascript/index.js">index.js</a>
   </li>
   <li>
