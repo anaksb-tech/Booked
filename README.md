@@ -25,6 +25,8 @@ Arquivos com o código fonte de medição do SLA:
   </li>
 </ul>
 
+<h3>Medição 1</h3>
+
 Data de medição: 07/06/2026
 
 Descrição das configurações:
@@ -63,6 +65,51 @@ Levantamento de Hipoteses:
   </li>
 </ol>
 
+
+<h3>Medição 2</h3>
+
+Data da medição: 08/06/2026
+
+Testes de carga (SLA):
+<ul>
+  <li>Latência (tempo de resposta médio - p95): 7,37 ms</li>
+  <li>Vazão: 2242 req/s (Total de 2692060 requisições realizadas)</li>
+  <li>Concorrência: Até 3000 usuários (VUs) simulados simultaneamente</li>
+  <li>Taxa de erros: 0,00% (Sucesso total em todas as respostas)</li>
+</ul>
+
+<img width="1781" height="764" alt="image" src="https://github.com/user-attachments/assets/c44b300c-32eb-4a0b-ab2f-acbe61133be0" />
+<img width="946" height="913" alt="image" src="https://github.com/user-attachments/assets/71e002f6-6629-4883-9a01-5b046ac7aa97" />
+
+<br>
+<br>
+
+Melhorias/otimizações:
+<ul>
+  <li>
+    O tráfego de dados entre o frontend e o banco de dados foi alterado para que apenas os dados necessários dos eBooks (título e id) sejam enviados na requisição. Isso é feito através do uso de um Data Transfer Object baseado no eBook criado com apenas os atributos necessários para esta requisição.
+  </li>
+  <li>
+    O número de conexões do pool do HikariCP foi expandido para 50, permitindo que mais requisições ocorram sem gerar filas de espera devido à falta de conexões disponíveis.
+  </li>
+  <li>
+    Também foi expandido o número de threads do servidor Tomcat, chegando agora em um total de 300 threads simultâneas, colaborando para a minimização de filas de requisições.
+  </li>
+</ul>
+
+Arquivos modificados:
+<ul>
+  <li>
+    <a href="https://github.com/anaksb-tech/Booked/blob/main/backend/src/main/java/com/booked/backend/controller/EbookController.java">EbookController.java</a>
+  </li>
+  <li>
+    <a href="https://github.com/anaksb-tech/Booked/blob/main/backend/src/main/resources/static/javascript/index.js">index.js</a>
+  </li>
+  <li>
+    <a href="https://github.com/anaksb-tech/Booked/blob/main/backend/src/main/resources/application.properties">application.properties</a>
+  </li>
+</ul>
+
 <br>
 
 <h2>Nome do Serviço: Fazer Cadastro de Usuário</h2>
@@ -88,6 +135,8 @@ Arquivos com o código fonte de medição do SLA:
     <a href="https://github.com/anaksb-tech/Booked/blob/main/backend/src/k6/teste-cadastro.js">teste-cadastro.js</a>
   </li>
 </ul>
+
+<h3>Medição 1</h3>
 
 Data de medição: 07/06/2026
 
@@ -122,3 +171,48 @@ Levantamento de hipoteses:
     Pools de conexão HikariCP: Com uma carga elevada de VUs, pode ocorrer que o número de conexões disponíveis ao HikariCP seja insuficiente, causando aumento gradual na latência das respostas do sistema, devido à criação de filas para o atendimento de requisições.
   </li>
 </ol>
+
+
+<h3>Medição 2</h3>
+
+Data da medição: 08/06/2026
+
+Testes de carga (SLA):
+<ul>
+  <li>Latência (tempo de resposta médio - p95): 8,12 ms</li>
+  <li>Vazão: 669 req/s (Total de 803847 requisições realizadas)</li>
+  <li>Concorrência: Até 300 usuários (VUs) simulados simultaneamente</li>
+  <li>Taxa de erros: 0,00% (Sucesso total em todas as respostas)</li>
+</ul>
+
+<img width="1778" height="765" alt="image" src="https://github.com/user-attachments/assets/64f35bd3-7732-4082-bc99-4a1a5518c019" />
+<img width="902" height="677" alt="image" src="https://github.com/user-attachments/assets/1dd93736-6690-484c-889f-9208ab9e3323" />
+
+<br>
+<br>
+
+Melhorias/otimizações:
+<ul>
+  <li>
+    A comunicação com o banco de dados na hora de fazer o login automático após o cadastro foi otimizada. Onde antes era requisitado um objeto Usuário inteiro para fazer login, agora é requisitado apenas o id do usuário, dado que o frontend já possui o nome fornecido no cadastro, e o único outro dado necessário é o id.
+  </li>
+  <li>
+    O número de conexões do pool do HikariCP foi expandido para 50, permitindo que mais requisições ocorram sem gerar filas de espera devido à falta de conexões disponíveis.
+  </li>
+  <li>
+    Também foi expandido o número de threads do servidor Tomcat, chegando agora em um total de 300 threads simultâneas, colaborando para a minimização de filas de requisições.
+  </li>
+</ul>
+
+Arquivos modificados:
+<ul>
+  <li>
+    <a href="https://github.com/anaksb-tech/Booked/blob/main/backend/src/main/java/com/booked/backend/controller/UsuarioController.java">UsuarioController.java</a>
+  </li>
+  <li>
+    <a href="https://github.com/anaksb-tech/Booked/blob/main/backend/src/main/resources/static/javascript/cadastrar.js">cadastrar.js</a>
+  </li>
+  <li>
+    <a href="https://github.com/anaksb-tech/Booked/blob/main/backend/src/main/resources/application.properties">application.properties</a>
+  </li>
+</ul>
