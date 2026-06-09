@@ -115,6 +115,44 @@ Arquivos modificados:
 
 <br>
 
+<h3>Resumo dos Resultados Comparativos</h3>
+
+<ul>
+  <li>
+    As mudanças feitas no código resolveram um congestionamento no sistema. Em vez de carregar todas as informações de um livro no banco de dados de uma só vez, o sistema agora busca apenas o que é essencial para a tela (título e ID). Além disso, aumentamos a capacidade do servidor para lidar com mais tarefas ao mesmo tempo. Isso deixou o sistema muito mais leve e eficiente.
+  </li>
+  <br>
+  <li>
+    Concorrência: Simulamos até 3.000 usuários acessando a página de eBooks exatamente ao mesmo tempo.O sistema foi um sucesso, não apresentou nenhum erro de carregamento (0% de falha). A diferença na Medição 2, é que ele suporta essa multidão de usuários com total facilidade, sem formar filas de espera no servidor e mantendo a velocidade excelente.
+    </li>
+   <br>
+  <li>
+      <img width="720" height="250" alt="Medição 1" src="https://github.com/user-attachments/assets/af1ad1df-badd-4041-8a5d-11c7e56611ee" />
+   </li>
+  <br>
+  <li>
+    Latência média: Na Medição 1, conforme mais usuários entravam, o sistema ficava lento, demorando quase 1 segundo  para carregar a página de eBooks no momento de maior pico.
+Na Medição 2, o tempo de resposta despencou. O sistema agora responde quase instantaneamente (levando menos de 20 milissegundos) do início ao fim do teste, garantindo uma navegação rápida para o usuário, independentemente de quantas pessoas estejam acessando junto.
+ </li>
+  <br>
+  <li>
+  <img width="720" height="250" alt="Medição 2" src="https://github.com/user-attachments/assets/a11bc216-e166-4abd-8166-f677f866e429" />
+ </li>
+  <br>
+  <li>
+    Vazão: Na Medição 1, o sistema travava em um limite e não conseguia entregar mais do que 1.600 requisições por segundo.
+Na Medição 2, esse limite sumiu. Acompanhando o aumento de usuários, o servidor conseguiu processar mais de 2.700 requisições por segundo. Ou seja, usando a mesma máquina, o sistema agora faz quase o dobro do trabalho sem travar.
+   </li>
+  <br>
+  <li>
+  <img width="720" height="250" alt="Medição 3" src="https://github.com/user-attachments/assets/ffe529b0-bf79-4013-9717-4ae6108dae3b" />
+ </li>
+  <br>
+  <li>
+</ul>
+
+<br>
+
 <h2>Nome do Serviço: Fazer Cadastro de Usuário</h2>
 
 Tipo de operação: Inserção e Leitura
@@ -219,3 +257,42 @@ Arquivos modificados:
     <a href="https://github.com/anaksb-tech/Booked/blob/main/backend/src/main/resources/application.properties">application.properties</a>
   </li>
 </ul>
+<h3>Resumo dos Resultados Comparativos</h3>
+
+<ul>
+  <li>
+    Expandimos a quantidade de conexões com o banco de dados (HikariCP) e as linhas de trabalho do servidor (Tomcat). Isso garantiu que o sistema ganhasse mais fôlego para registrar os usuários sem criar nenhuma fila oculta.
+  </li>
+  <br>
+  </li>
+  <br>
+  <li>
+    Concorrência: Simulamos 300 usuários criando contas exatamente ao mesmo tempo. O sistema obteve 100% de sucesso (zero falhas), provando ser extremamente seguro, robusto e estável para operações de escrita.
+  </li>
+</ul>
+    </li>
+   <br>
+  <li>
+    <img width="720" height="250" alt="Medição 4" src="https://github.com/user-attachments/assets/64e2ce23-8e18-4969-925b-f85d0d00919f" />
+   </li>
+  <br>
+  <li>
+    Latência média: O processo de cadastro, que já era rápido, ficou ainda melhor sob estresse máximo. Na Medição 1, o tempo de resposta p95 era de 13,50 ms. Após as melhorias, caiu para impressionantes 9,65 ms, operando de forma praticamente instantânea.
+ </li>
+  <br>
+  <li>
+ <img width="720" height="250" alt="Medição 5" src="https://github.com/user-attachments/assets/706bc0d3-3c02-402d-9003-af434c14f567" />
+  </li>
+  <br>
+  <li>
+    Vazão: O servidor conseguiu processar todo o fluxo de cadastros de forma contínua e linear, absorvendo o impacto das requisições simultâneas sem apresentar nenhuma perda de rendimento.
+   </li>
+  <br>
+  <li>
+
+ <img width="720" height="250" alt="Medição 5 (1)" src="https://github.com/user-attachments/assets/e750f76e-6b02-41fc-a840-db210f93ae5b" />
+
+  
+  </li>
+  <br>
+  <li>
