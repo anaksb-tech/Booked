@@ -1,9 +1,12 @@
 package com.booked.backend.controller;
 
 import com.booked.backend.entity.Compra;
+import com.booked.backend.repository.CompraRepository;
 import com.booked.backend.service.CompraService;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
+
+import java.time.LocalDateTime;
 import java.util.List;
 
 @RestController
@@ -50,4 +53,13 @@ public class CompraController {
             return ResponseEntity.badRequest().body(e.getMessage());
         }
     }
+
+    /*
+    @PostMapping("/publicar")
+    public Compra publicar(@RequestBody Compra compra) {
+
+        compra.setDataHora(LocalDateTime.now());
+
+    }
+    */
 }

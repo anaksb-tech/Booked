@@ -107,7 +107,7 @@ document.getElementById("botaoPublicarEbook").onclick = async function() {
 
     if(nomeUsuario === null) {
 
-        window.alert("Faça login ou cadastre-se para acessar esta funcionalidade");
+        window.location.href = "/html/login.html";
 
     } else {
 
