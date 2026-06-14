@@ -21,6 +21,8 @@ public class Usuario {
 
     private Integer ranque = 0;
 
+    private String compras;
+
     // Getters
     public Integer getId() {
         return idUsuario;
@@ -44,6 +46,10 @@ public class Usuario {
 
     public Integer getRanque() {
         return ranque;
+    }
+
+    public String getCompras() {
+        return compras;
     }
 
     // Setters
@@ -70,5 +76,7 @@ public class Usuario {
     public void setRanque(Integer ranque) {
         this.ranque = ranque;
     }
+
+    public void setCompras(String compras) { this.compras = compras; }
 
 }

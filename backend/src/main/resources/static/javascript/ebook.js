@@ -23,3 +23,23 @@ window.onload = async function() {
     dataPublicacao.textContent = ebook.data_hora;
 
 }
+
+// Botão comprar
+document.getElementById("botaoComprar").onclick = function() {
+
+    // Verificar se o usuário está loggado
+    const nomeUsuario = localStorage.getItem("nomeUsuario");
+
+    if(nomeUsuario === null) {
+        window.location.href = "/html/login.html";
+    } else {
+
+        // Pegar o id do eBook do url da página
+        const parametro = new URLSearchParams(window.location.search);
+        const id = parametro.get("id");
+
+        window.location.href = `/html/comprarEbook.html?id=${id}`;
+
+    }
+
+}

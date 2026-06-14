@@ -5,7 +5,7 @@ window.onload = function() {
     let header = document.getElementById("bemVindo");
     let botaoCadastrar = document.getElementById("botaoCadastrar");
     let botaoLogin = document.getElementById("botaoLogin");
-    let botaoPerfil = document.getElementById("botaoPerfil");
+    let botaoPerfil = document.getElementById("botaoVerPerfil");
     let botaoSair = document.getElementById("botaoSair");
 
     // Verificar se o usuário está loggado ou não para formatar a tela
@@ -30,6 +30,7 @@ window.onload = function() {
 
 }
 
+// Botão Ver eBooks
 document.getElementById("botaoVerEbooks").onclick = carregarEbooks;
 
 async function carregarEbooks() {
@@ -55,6 +56,7 @@ async function carregarEbooks() {
 
 }
 
+// Botão Ver Livros
 document.getElementById("botaoVerLivros").onclick = async function() {
 
     // Requisita os anúncios do banco de dados
@@ -78,6 +80,7 @@ document.getElementById("botaoVerLivros").onclick = async function() {
 
 }
 
+// Botão Sair
 botaoSair.onclick = function() {
 
     let resposta = confirm("Tem certeza de que quer sair da sua conta?");
@@ -85,6 +88,31 @@ botaoSair.onclick = function() {
     if(resposta) {
         localStorage.clear();
         window.location.href = "/html/index.html";
+    }
+
+}
+
+// Botão Ver Perfil
+document.getElementById("botaoVerPerfil").onclick = function() {
+
+    window.location.href = "/html/perfil.html";
+
+}
+
+// Botão Publicar eBook
+document.getElementById("botaoPublicarEbook").onclick = async function() {
+
+    // Verificar se o usuário está loggado
+    const nomeUsuario = localStorage.getItem("nomeUsuario");
+
+    if(nomeUsuario === null) {
+
+        window.location.href = "/html/login.html";
+
+    } else {
+
+        window.location.href = "/html/publicarEbook.html";
+
     }
 
 }
