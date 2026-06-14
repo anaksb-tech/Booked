@@ -4,6 +4,8 @@ window.onload = async function() {
     const nome = document.getElementById("nome");
     const email = document.getElementById("email");
     const genero = document.getElementById("genero");
+    const compras = document.getElementById("compras");
+
 
     // Buscar as informações do usuário loggado
     const idUsuario = localStorage.getItem("idUsuario");
@@ -19,7 +21,17 @@ window.onload = async function() {
     } else if(usuario.genero === "fem") {
         genero.textContent = "Feminino";
     } else {
-        genero.textContent = "Outro";
+        genero.textContent = "Outras";
     }
 
+    let contador = 0;
+    //é ultilizado uma varchar(255) "compras" unica no mysql com todos os nomes dos ebooks
+    // tendo ,, em sua frente (exceto pela primeira) Ex: Casa de Papelão,,Maria, a Magia,,EXquecido
+    // cada quinto ,, é substituido por um \n, para organização
+    let resultado = usuario.compras.replace(/,,/g, () => {
+        contador++;
+        return contador % 5 === 0 ? "\n" : ",,";
+    });
+    //então os ,, restantes são substituidos por ; para limpa
+    compras.textContent = resultado.replaceAll(",,", "; ");
 }

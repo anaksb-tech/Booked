@@ -61,8 +61,7 @@ public class UsuarioController {
 
         Usuario usuario = usuarioRepository.findById(id).orElseThrow(() -> new RuntimeException("Usuário não encontrado"));
 
-        return new UsuarioPerfilDTO(usuario.getEmail(), usuario.getGenero());
-
+        return new UsuarioPerfilDTO(usuario.getEmail(), usuario.getGenero(), usuario.getCompras());
     }
 
     @GetMapping("/buscar-usuario/{id}")

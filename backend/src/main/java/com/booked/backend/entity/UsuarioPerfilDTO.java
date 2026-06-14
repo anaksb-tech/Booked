@@ -7,10 +7,12 @@ public class UsuarioPerfilDTO {
 
     private String genero;
 
+    private String compras;
     // Construtor
-    public UsuarioPerfilDTO(String email, String genero) {
+    public UsuarioPerfilDTO(String email, String genero,String compras) {
         this.email = email;
         this.genero = genero;
+        this.compras = compras;
     }
 
     // Getters
@@ -18,8 +20,7 @@ public class UsuarioPerfilDTO {
         return email;
     }
 
-    public String getGenero() {
-        return genero;
-    }
+    public String getGenero() { return genero; }
 
+    public String getCompras() { return compras; }
 }
