@@ -5,6 +5,7 @@ create table usuario (
 	genero varchar(10) not null,
 	senha varchar(50) not null,
 	ranque int not null,
+    compras varchar(8000) not null,
 	primary key (id_usuario),
 	unique (email)
 );

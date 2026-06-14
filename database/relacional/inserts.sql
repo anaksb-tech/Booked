@@ -1,11 +1,11 @@
 insert into usuario values
-(1,'Erick Gomes Mattos','erickgm@edu.unirio.br','outro','123456',9),
-(2,'Jorge','jorge@edu.unirio.br','masc','12321343',8),
-(3,'Marcio','marcio@edu.unirio.br','masc','43343432',8),
-(4,'Maria','maria@edu.unirio.br','fem','5545425',5),
-(5,'Marco','marco@edu.unirio.br','masc','324324',10),
-(6,'Bento','bento@gmail.com','masc','bento1234',7),
-(7,'Luciana','luciana@hotmail.com','fem','123luci321',6);
+(1,'Erick Gomes Mattos','erickgm@edu.unirio.br','outro','123456',9,'casa de papelão,,mágico de jo'),
+(2,'Jorge','jorge@edu.unirio.br','masc','12321343',8,'casa de papelão,mágico de jo'),
+(3,'Marcio','marcio@edu.unirio.br','masc','43343432',8,'casa de papelão,mágico de jo'),
+(4,'Maria','maria@edu.unirio.br','fem','5545425',5,'casa de papelão,mágico de jo'),
+(5,'Marco','marco@edu.unirio.br','masc','324324',10,'casa de papelão,mágico de jo'),
+(6,'Bento','bento@gmail.com','masc','bento1234',7,'casa de papelão,mágico de jo'),
+(7,'Luciana','luciana@hotmail.com','fem','123luci321',6,'casa de papelão,mágico de jo');
 
 
 insert into amizade values
