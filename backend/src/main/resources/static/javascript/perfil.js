@@ -5,7 +5,7 @@ window.onload = async function() {
     const email = document.getElementById("email");
     const genero = document.getElementById("genero");
     const compras = document.getElementById("compras");
-
+    const trocas = document.getElementById("trocas");
 
     // Buscar as informações do usuário loggado
     const idUsuario = localStorage.getItem("idUsuario");
@@ -30,8 +30,14 @@ window.onload = async function() {
     // cada quinto ,, é substituido por um \n, para organização
     let resultado = usuario.compras.replace(/,,/g, () => {
         contador++;
-        return contador % 5 === 0 ? "\n" : ",,";
+        return contador % 3 === 0 ? ";\n" : ",,";
     });
     //então os ,, restantes são substituidos por ; para limpa
     compras.textContent = resultado.replaceAll(",,", "; ");
+    contador = 0;
+    resultado = usuario.trocas.replace(/,,/g, () => {
+        contador++;
+        return contador % 1 === 0 ? ";\n" : ",,";
+    });
+    trocas.textContent = resultado.replaceAll(",,", "; ");
 }

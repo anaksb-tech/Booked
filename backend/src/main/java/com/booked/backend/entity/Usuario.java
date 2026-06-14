@@ -23,6 +23,8 @@ public class Usuario {
 
     private String compras;
 
+    private String trocas;
+
     // Getters
     public Integer getId() {
         return idUsuario;
@@ -52,31 +54,24 @@ public class Usuario {
         return compras;
     }
 
+    public String getTrocas() {return trocas; }
+
     // Setters
     public void setId(Integer id_usuario) {
         this.idUsuario = id_usuario;
     }
 
-    public void setNome(String nome) {
-        this.nome = nome;
-    }
+    public void setNome(String nome) {this.nome = nome;}
 
-    public void setEmail(String email) {
-        this.email = email;
-    }
+    public void setEmail(String email) {this.email = email;}
 
-    public void setGenero(String genero) {
-        this.genero = genero;
-    }
+    public void setGenero(String genero) {this.genero = genero;}
 
-    public void setSenha(String senha) {
-        this.senha = senha;
-    }
+    public void setSenha(String senha) {this.senha = senha;}
 
-    public void setRanque(Integer ranque) {
-        this.ranque = ranque;
-    }
+    public void setRanque(Integer ranque) {this.ranque = ranque;}
 
     public void setCompras(String compras) { this.compras = compras; }
 
+    public void setTrocas(String trocas) { this.trocas = trocas; }
 }

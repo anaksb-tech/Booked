@@ -8,11 +8,14 @@ public class UsuarioPerfilDTO {
     private String genero;
 
     private String compras;
+
+    private String trocas;
     // Construtor
-    public UsuarioPerfilDTO(String email, String genero,String compras) {
+    public UsuarioPerfilDTO(String email, String genero, String compras, String trocas) {
         this.email = email;
         this.genero = genero;
         this.compras = compras;
+        this.trocas = trocas;
     }
 
     // Getters
@@ -23,4 +26,6 @@ public class UsuarioPerfilDTO {
     public String getGenero() { return genero; }
 
     public String getCompras() { return compras; }
+
+    public String getTrocas() { return trocas; }
 }
