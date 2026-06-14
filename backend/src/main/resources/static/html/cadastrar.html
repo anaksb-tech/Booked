@@ -1,0 +1,65 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+
+    <meta charset="UTF-8">
+    <title>Cadastrar-se</title>
+
+</head>
+
+<body>
+
+<h1>
+    Cadastrar-se
+</h1>
+
+<form>
+
+    <label>
+        Nome:
+    </label>
+    <input type="text" id="inputNome" required>
+
+    <br>
+    <br>
+
+    <label>
+        Gênero:
+    </label>
+    <select id="inputGenero" required>
+        <option value="" selected disabled>Selecione</option>
+        <option value="masc">Masculino</option>
+        <option value="fem">Feminino</option>
+        <option value="outro">Outro</option>
+    </select>
+
+    <br>
+    <br>
+
+    <label>
+        Email:
+    </label>
+    <input type="email" id="inputEmail" required>
+
+    <br>
+    <br>
+
+    <label>
+        Senha:
+    </label>
+    <input type="text" id="inputSenha" required>
+
+    <br>
+    <br>
+
+    <button type="submit" id="confirmarCadastro">
+        Confirmar
+    </button>
+
+</form>
+
+    <script src="/javascript/cadastrar.js"></script>
+</body>
+
+</html>
