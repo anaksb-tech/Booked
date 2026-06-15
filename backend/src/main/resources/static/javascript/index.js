@@ -124,13 +124,9 @@ document.getElementById("botaoAnunciarLivro").onclick = async function() {
     const nomeUsuario = localStorage.getItem("nomeUsuario");
 
     if(nomeUsuario === null) {
-
         window.location.href = "/html/login.html";
-
     } else {
-
         window.location.href = "/html/anunciarLivro.html";
-
     }
 
 }

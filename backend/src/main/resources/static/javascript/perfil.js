@@ -28,3 +28,13 @@ window.onload = async function() {
 document.getElementById("botaoBiblioteca").onclick = function() {
     window.location.href = "/html/bibliotecaEbook.html";
 }
+
+// Botao meus anúncios
+document.getElementById("botaoMeusAnuncios").onclick = function() {
+    window.location.href = "/html/meusAnuncios.html";
+}
+
+// Botao minhas ofertas
+document.getElementById("botaoMinhasOfertas").onclick = function() {
+    window.location.href = "/html/minhasOfertas.html";
+}

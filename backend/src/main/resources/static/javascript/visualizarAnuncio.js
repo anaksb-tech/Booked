@@ -23,3 +23,22 @@ window.onload = async function() {
     descricao.textContent = anuncio.descricao;
 
 }
+
+// Botão Fazer Oferta
+document.getElementById("botaoFazerOferta").onclick = async function() {
+
+    // Verificar se o usuário está loggado
+    const nomeUsuario = localStorage.getItem("nomeUsuario");
+
+    if(nomeUsuario === null) {
+        window.location.href = "/html/login.html";
+    } else {
+
+        // Pegar o id do Anúncio do url da página
+        const parametro = new URLSearchParams(window.location.search);
+        const id = parametro.get("id");
+        window.location.href = `/html/fazerOferta.html?id=${id}`;
+
+    }
+
+}

@@ -50,4 +50,10 @@ public class AnuncioController {
 
     }
 
+    @GetMapping("/meus-anuncios/{id}")
+    public List<Anuncio> buscarPorUsuario(@PathVariable Integer id) {
+        Usuario usuario = usuarioRepository.findById(id).orElseThrow();
+        return repository.findByUsuario(usuario);
+    }
+
 }
