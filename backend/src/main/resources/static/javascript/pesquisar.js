@@ -1,10 +1,11 @@
 const API_URL = "http://localhost:8080";
 
 function obterIdUsuarioLogado() {
-    let id = localStorage.getItem("idUsuarioLogado");
-    if (!id) {
-        id = prompt("Digite seu ID de usuário (simulação de login):");
-        localStorage.setItem("idUsuarioLogado", id);
+    const id = localStorage.getItem("idUsuario");
+    if (!id || id === "null" || isNaN(parseInt(id))) {
+        alert("Você precisa fazer login primeiro.");
+        window.location.href = "/html/login.html";
+        return null;
     }
     return parseInt(id);
 }
@@ -12,9 +13,8 @@ function obterIdUsuarioLogado() {
 const idUsuario = obterIdUsuarioLogado();
 
 document.getElementById("botaoPesquisar").addEventListener("click", async function () {
-
-    const texto = document.getElementById("inputTextoBusca").value;
-    const formato = document.getElementById("inputTipoLivro").value;
+    const texto = document.getElementById("inputTexto").value;
+    const formato = document.getElementById("inputFormato").value;
 
     if (!texto) {
         alert("Digite o que você está procurando.");
@@ -24,9 +24,7 @@ document.getElementById("botaoPesquisar").addEventListener("click", async functi
     const pesquisa = {
         id_usuario: idUsuario,
         texto: texto,
-        filtros: {
-            categorias: [formato]
-        }
+        formato: formato
     };
 
     try {
@@ -37,7 +35,7 @@ document.getElementById("botaoPesquisar").addEventListener("click", async functi
         });
 
         if (resposta.ok) {
-            document.getElementById("inputTextoBusca").value = "";
+            document.getElementById("inputTexto").value = "";
             carregarHistorico();
         } else {
             const erro = await resposta.text();
@@ -49,9 +47,7 @@ document.getElementById("botaoPesquisar").addEventListener("click", async functi
 });
 
 async function carregarHistorico() {
-    const div = document.getElementById("listaHistorico");
-     if (!div) return;
-
+    const div = document.getElementById("historicoPesquisas");
     div.innerHTML = "Carregando...";
 
     try {
@@ -70,21 +66,13 @@ async function carregarHistorico() {
         }
 
         div.innerHTML = "";
-
-        historico.reverse();
-
         historico.forEach(item => {
             const data = new Date(item.data_hora).toLocaleString();
-
-            let formatoExibicao = "sem formato";
-            if (item.filtros && item.filtros.categorias && item.filtros.categorias.length > 0) {
-                formatoExibicao = item.filtros.categorias[0];
-            }
-
-            div.innerHTML += `<p>"<strong>${item.texto}</strong>" (${formatoExibicao}) — <span style="color: gray; font-size: 12px;">${data}</span></p>`;
+            div.innerHTML += `<p>"${item.texto}" (${item.formato || "sem formato"}) — ${data}</p>`;
         });
     } catch (erro) {
         div.innerHTML = "<p>Erro ao conectar com o servidor.</p>";
     }
 }
+
 carregarHistorico();

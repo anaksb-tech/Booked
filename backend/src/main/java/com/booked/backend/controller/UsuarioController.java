@@ -3,7 +3,6 @@ package com.booked.backend.controller;
 import com.booked.backend.entity.UsuarioPerfilDTO;
 import com.booked.backend.repository.UsuarioRepository;
 import com.booked.backend.entity.Usuario;
-import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.*;
 
 @RestController
@@ -12,20 +11,18 @@ public class UsuarioController {
 
     private final UsuarioRepository usuarioRepository;
 
+    // Construtor fazendo a injeção de dependência (substitui o @Autowired)
     public UsuarioController(UsuarioRepository usuarioRepository) {
         this.usuarioRepository = usuarioRepository;
     }
 
-    @Autowired
-    private UsuarioRepository repository;
-
     @PostMapping("/cadastrar-usuario")
     public Usuario criar(@RequestBody Usuario usuario) {
-        return repository.save(usuario);
+        return usuarioRepository.save(usuario);
     }
 
     @PostMapping("/login")
-    public Integer verificarLogin(@RequestBody Usuario credenciais) {
+    public Usuario verificarLogin(@RequestBody Usuario credenciais) {
 
         Usuario usuario = usuarioRepository.findByEmailAndSenha(
                 credenciais.getEmail(),
@@ -33,11 +30,10 @@ public class UsuarioController {
         );
 
         if(usuario == null) {
-            return null;
+            return null; // Retorna vazio, o que faz seu JS exibir o alerta de erro
         }
 
-        return usuario.getId();
-
+        return usuario;
     }
 
     @GetMapping("/buscar/id/{id}")
@@ -46,14 +42,12 @@ public class UsuarioController {
         Usuario usuario = usuarioRepository.findById(id).orElseThrow(() -> new RuntimeException("Usuário não encontrado"));
 
         return new UsuarioPerfilDTO(usuario.getEmail(), usuario.getGenero());
-
     }
 
     @GetMapping("/buscar-usuario/{id}")
     public Usuario buscarUsuario(@PathVariable Integer id) {
 
-        return repository.findById(id).orElseThrow(() -> new RuntimeException("Usuário não encontrado"));
-        
-    }
+        return usuarioRepository.findById(id).orElseThrow(() -> new RuntimeException("Usuário não encontrado"));
 
+    }
 }

@@ -1,39 +1,49 @@
-document.getElementById("confirmarCadastro").onclick = async function() {
+document.getElementById("confirmarCadastro").addEventListener("click", async function () {
 
-    // Pega os dados do formulário
-    let nome = document.getElementById("inputNome").value;
-    let genero = document.getElementById("inputGenero").value;
-    let email = document.getElementById("inputEmail").value;
-    let senha = document.getElementById("inputSenha").value;
+    const nome = document.getElementById("inputNome").value;
+    const genero = document.getElementById("inputGenero").value;
+    const email = document.getElementById("inputEmail").value;
+    const senha = document.getElementById("inputSenha").value;
 
-    // Valida os dados do formulário
-    if(nome === "") {
+    if (nome === "") {
         window.alert("Nome é um campo obrigatório");
-    } else if(genero === "") {
+        return;
+    }
+    if (genero === "") {
         window.alert("Gênero é um campo obrigatório");
-    } else if(email === "") {
+        return;
+    }
+    if (email === "") {
         window.alert("Email é um campo obrigatório");
-    } else if(senha === "") {
+        return;
+    }
+    if (senha === "") {
         window.alert("Senha é um campo obrigatório");
-    } else {
+        return;
+    }
 
-        // Cria o bloco de dados do usuário
-        let usuario = {
-            nome: nome,
-            genero: genero,
-            email: email,
-            senha: senha
-        };
+    const usuario = {
+        nome: nome,
+        genero: genero,
+        email: email,
+        senha: senha
+    };
 
-        // Envia o usuário pro backend
-        await fetch("http://localhost:8080/usuario/cadastrar-usuario", {
+    try {
+        const resposta = await fetch("http://localhost:8080/usuario/cadastrar-usuario", {
             method: "POST",
-            headers: {"Content-Type": "application/json"},
+            headers: { "Content-Type": "application/json" },
             body: JSON.stringify(usuario)
         });
 
+        if (resposta.ok) {
+            alert("Cadastro realizado com sucesso! Faça login.");
+            window.location.href = "/html/login.html";
+        } else {
+            const erro = await resposta.text();
+            alert("Erro ao cadastrar: " + erro);
+        }
+    } catch (erro) {
+        alert("Erro ao conectar com o servidor: " + erro);
     }
-
-
-
-}
+});

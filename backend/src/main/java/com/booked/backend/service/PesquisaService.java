@@ -8,11 +8,11 @@ import org.springframework.core.ParameterizedTypeReference;
 import org.springframework.http.*;
 import org.springframework.stereotype.Service;
 import org.springframework.web.client.RestTemplate;
-import java.time.Instant;
 
-import java.time.*;
-import java.time.format.*;
-import java.util.*;
+import java.time.Instant;
+import java.util.HashMap;
+import java.util.List;
+import java.util.Map;
 
 @Service
 public class PesquisaService {
@@ -61,26 +61,36 @@ public class PesquisaService {
     public List<Pesquisa> historicoPorUsuario(Integer idUsuario) {
         String url = couchDbUrl + "/" + database + "/_find";
 
-        Map<String, Object> selector = new HashMap<>();
+           Map<String, Object> selector = new HashMap<>();
         selector.put("id_usuario", idUsuario);
 
-        Map<String, Object> sort = new HashMap<>();
-        sort.put("data_hora", "desc");
-
-        Map<String, Object> body = new HashMap<>();
+           Map<String, Object> body = new HashMap<>();
         body.put("selector", selector);
-        body.put("sort", List.of(sort));
 
         HttpHeaders headers = new HttpHeaders();
         headers.setContentType(MediaType.APPLICATION_JSON);
         HttpEntity<Map<String, Object>> request = new HttpEntity<>(body, headers);
 
-        ResponseEntity<CouchDbFindResponse<Pesquisa>> response = restTemplate.exchange(
+         ResponseEntity<CouchDbFindResponse<Pesquisa>> response = restTemplate.exchange(
                 url, HttpMethod.POST, request,
                 new ParameterizedTypeReference<CouchDbFindResponse<Pesquisa>>() {}
         );
 
         CouchDbFindResponse<Pesquisa> result = response.getBody();
-        return result != null ? result.getDocs() : List.of();
+
+        // Se não encontrar nada, devolve lista vazia
+        if (result == null || result.getDocs() == null) {
+            return List.of();
+        }
+
+          List<Pesquisa> pesquisas = new java.util.ArrayList<>(result.getDocs());
+
+        pesquisas.sort((p1, p2) -> {
+            if (p1.getDataHora() == null) return 1;
+            if (p2.getDataHora() == null) return -1;
+            return p2.getDataHora().compareTo(p1.getDataHora());
+        });
+
+        return pesquisas;
     }
 }

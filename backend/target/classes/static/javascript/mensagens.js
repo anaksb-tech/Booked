@@ -1,14 +1,14 @@
 const API_URL = "http://localhost:8080";
 
 function obterIdUsuarioLogado() {
-    let id = localStorage.getItem("idUsuarioLogado");
-    if (!id) {
-        id = prompt("Digite seu ID de usuário (simulação de login):");
-        localStorage.setItem("idUsuarioLogado", id);
+    const id = localStorage.getItem("idUsuario");
+    if (!id || id === "null" || isNaN(parseInt(id))) {
+        alert("Você precisa fazer login primeiro.");
+        window.location.href = "/html/login.html";
+        return null;
     }
     return id;
 }
-
 const meuId = obterIdUsuarioLogado();
 let idAmigoAtual = null;
 
