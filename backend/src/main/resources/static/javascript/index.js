@@ -116,3 +116,17 @@ document.getElementById("botaoPublicarEbook").onclick = async function() {
     }
 
 }
+
+// Botão Anunciar Livro
+document.getElementById("botaoAnunciarLivro").onclick = async function() {
+
+    // Verificar se o usuário está loggado
+    const nomeUsuario = localStorage.getItem("nomeUsuario");
+
+    if(nomeUsuario === null) {
+        window.location.href = "/html/login.html";
+    } else {
+        window.location.href = "/html/anunciarLivro.html";
+    }
+
+}

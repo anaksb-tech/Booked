@@ -8,6 +8,7 @@ import java.util.List;
 
 @RestController
 @CrossOrigin(origins = "*")
+@RequestMapping("/oferta")
 public class OfertaController {
 
     private final OfertaService ofertaService;
@@ -26,12 +27,12 @@ public class OfertaController {
         return ofertaService.listarPorAnuncio(idAnuncio);
     }
 
-    @GetMapping("/ofertas/usuario/{idUsuario}")
-    public List<Oferta> listarPorUsuario(@PathVariable Integer idUsuario) {
-        return ofertaService.listarPorUsuario(idUsuario);
+    @GetMapping("/ofertas-usuario/{id}")
+    public List<Oferta> listarPorUsuario(@PathVariable Integer id) {
+        return ofertaService.listarPorUsuario(id);
     }
 
-    @PostMapping("/ofertas")
+    @PostMapping("/registrar")
     public Oferta criar(@RequestBody Oferta oferta) {
         return ofertaService.criarOferta(oferta);
     }

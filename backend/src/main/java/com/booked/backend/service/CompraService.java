@@ -1,5 +1,9 @@
 package com.booked.backend.service;
 
+import com.booked.backend.entity.Ebook;
+import com.booked.backend.entity.Usuario;
+import com.booked.backend.repository.EbookRepository;
+import com.booked.backend.repository.UsuarioRepository;
 import org.springframework.stereotype.Service;
 import com.booked.backend.entity.Compra;
 import com.booked.backend.repository.CompraRepository;
@@ -10,9 +14,13 @@ import java.util.List;
 public class CompraService {
 
     private final CompraRepository compraRepository;
+    private final EbookRepository ebookRepository;
+    private final UsuarioRepository usuarioRepository;
 
-    public CompraService(CompraRepository compraRepository) {
+    public CompraService(CompraRepository compraRepository, EbookRepository ebookRepository, UsuarioRepository usuarioRepository) {
         this.compraRepository = compraRepository;
+        this.ebookRepository = ebookRepository;
+        this.usuarioRepository = usuarioRepository;
     }
 
     public List<Compra> listarPorUsuario(Integer id_usuario) {
@@ -20,6 +28,19 @@ public class CompraService {
     }
 
     public Compra realizarCompra(Compra compra) {
+
+        // Buscar usuário no banco
+        System.out.println("USUARIO ID: " + compra.getUsuario().getId());
+        Usuario usuario = usuarioRepository.findById(compra.getUsuario().getId()).orElseThrow();
+
+        // Buscar eBook no banco
+        System.out.println("EBOOK ID: " + compra.getEbook().getId_ebook());
+        Ebook ebook = ebookRepository.findById(compra.getEbook().getId_ebook()).orElseThrow();
+
+        // Inserir eles na compra
+        compra.setUsuario(usuario);
+        compra.setEbook(ebook);
+
         Compra compraExistente = compraRepository
                 .findByUsuario_IdUsuarioAndEbook_IdEbook(
                         compra.getUsuario().getId(),
@@ -48,4 +69,5 @@ public class CompraService {
         }
         compraRepository.deleteById(id_compra);
     }
+
 }

@@ -1,5 +1,6 @@
 package com.booked.backend.entity;
 
+import com.fasterxml.jackson.annotation.JsonProperty;
 import jakarta.persistence.*;
 
 import java.math.BigDecimal;
@@ -13,6 +14,7 @@ public class Ebook {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     @Column(name = "id_ebook")
+    @JsonProperty("id_ebook")
     private Integer idEbook;
 
     @ManyToOne
@@ -78,6 +80,10 @@ public class Ebook {
 
     public void setUsuario(Usuario usuario) {
         this.usuario = usuario;
+    }
+
+    public void setIdEbook(Integer idEbook) {
+        this.idEbook = idEbook;
     }
 
     // Fazer resto depois...

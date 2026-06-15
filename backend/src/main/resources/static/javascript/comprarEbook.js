@@ -26,8 +26,10 @@ document.getElementById("botaoComprar").onclick = async function() {
         valor: ebook.preco,
     }
 
+    console.log(compra);
+
     // Registrar no banco de dados
-    resposta = await fetch("https://localhost:8080/ebook/publicar", {
+    resposta = await fetch("http://localhost:8080/compras/comprar", {
         method: "POST",
         headers: {"Content-Type": "application/json"},
         body: JSON.stringify(compra)

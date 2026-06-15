@@ -44,4 +44,5 @@ public class Compra {
 
     public LocalDateTime getDataHora() { return dataHora; }
     public void setDataHora(LocalDateTime dataHora) { this.dataHora = dataHora; }
+
 }
