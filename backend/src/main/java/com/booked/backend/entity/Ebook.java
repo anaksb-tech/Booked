@@ -15,6 +15,10 @@ public class Ebook {
     @Column(name = "id_ebook")
     private Integer idEbook;
 
+    @ManyToOne
+    @JoinColumn(name = "id_usuario")
+    private Usuario usuario;
+
     private String titulo;
 
     @Column(columnDefinition = "TEXT")
@@ -67,6 +71,15 @@ public class Ebook {
     public void setTitulo(String titulo) {
         this.titulo = titulo;
     }
+
+    public void setData_hora(LocalDateTime data_hora) {
+        this.data_hora = data_hora;
+    }
+
+    public void setUsuario(Usuario usuario) {
+        this.usuario = usuario;
+    }
+
     // Fazer resto depois...
 
 

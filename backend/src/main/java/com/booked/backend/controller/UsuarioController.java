@@ -1,5 +1,6 @@
 package com.booked.backend.controller;
 
+import com.booked.backend.entity.UsuarioPerfilDTO;
 import com.booked.backend.repository.UsuarioRepository;
 import com.booked.backend.entity.Usuario;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -37,6 +38,22 @@ public class UsuarioController {
 
         return usuario.getId();
 
+    }
+
+    @GetMapping("/buscar/id/{id}")
+    public UsuarioPerfilDTO verPerfil(@PathVariable Integer id) {
+
+        Usuario usuario = usuarioRepository.findById(id).orElseThrow(() -> new RuntimeException("Usuário não encontrado"));
+
+        return new UsuarioPerfilDTO(usuario.getEmail(), usuario.getGenero());
+
+    }
+
+    @GetMapping("/buscar-usuario/{id}")
+    public Usuario buscarUsuario(@PathVariable Integer id) {
+
+        return repository.findById(id).orElseThrow(() -> new RuntimeException("Usuário não encontrado"));
+        
     }
 
 }

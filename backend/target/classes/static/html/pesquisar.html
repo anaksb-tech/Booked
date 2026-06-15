@@ -1,0 +1,45 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+
+<head>
+
+    <meta charset="UTF-8">
+    <title>Pesquisar</title>
+
+</head>
+
+<body>
+
+<h1>Pesquisar</h1>
+
+<form>
+
+    <label>O que você está procurando?</label>
+    <input id="inputTexto" type="text" required>
+
+    <br>
+    <br>
+
+    <label>Tipo:</label>
+    <select id="inputFormato">
+        <option value="ebook">eBook</option>
+        <option value="livro_fisico">Livro Físico</option>
+    </select>
+
+    <br>
+    <br>
+
+    <button id="botaoPesquisar" type="button">Pesquisar</button>
+
+</form>
+
+<br>
+
+<h2>Histórico de Pesquisas</h2>
+
+<div id="historicoPesquisas"></div>
+
+<script src="/javascript/pesquisar.js"></script>
+</body>
+
+</html>
