@@ -23,3 +23,8 @@ window.onload = async function() {
     }
 
 }
+
+// Botao biblioteca
+document.getElementById("botaoBiblioteca").onclick = function() {
+    window.location.href = "/html/bibliotecaEbook.html";
+}

@@ -54,12 +54,11 @@ public class CompraController {
         }
     }
 
-    /*
-    @PostMapping("/publicar")
+    @PostMapping("/comprar")
     public Compra publicar(@RequestBody Compra compra) {
 
-        compra.setDataHora(LocalDateTime.now());
+        return compraService.realizarCompra(compra);
 
     }
-    */
+
 }
