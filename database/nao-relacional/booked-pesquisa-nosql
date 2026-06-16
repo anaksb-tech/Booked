@@ -1,1 +1,172 @@
+### Banco: booked_pesquisas
+
+
+### DDL
+
+
+### Para criar o Banco de Dados
+PUT http://admin:senha@127.0.0.1:5984/booked_pesquisas
+
+
+### Design Document
+### Restrição: Impedir que salve pesquisas sem id_usuario ou sem texto.
+PUT http://admin:senha@127.0.0.1:5984/booked_pesquisas/_design/validacao_pesquisa
+Content-Type: application/json
+
+
+{
+  "validate_doc_update": "function(newDoc, oldDoc, userCtx) { if (newDoc.tipo === 'pesquisa') { if (!newDoc.id_usuario) { throw({ forbidden: 'id_usuario é obrigatório' }); } if (!newDoc.texto || newDoc.texto.trim() === '') { throw({ forbidden: 'texto é obrigatório' }); } } }"
+}
+
+
+### Índice simples por id_usuario
+POST http://admin:senha@127.0.0.1:5984/booked_pesquisas/_index
+Content-Type: application/json
+
+
+{
+  "index": { "fields": ["id_usuario"] },
+  "name": "idx-id-usuario",
+  "type": "json"
+}
+
+
+### Índice simples por data_hora
+POST http://admin:senha@127.0.0.1:5984/booked_pesquisas/_index
+Content-Type: application/json
+
+
+{
+  "index": { "fields": ["data_hora"] },
+  "name": "idx-data-hora",
+  "type": "json"
+}
+
+
+### Índice composto por id_usuario + data_hora
+### Chave composta: otimiza busca do histórico de um usuário ordenado por data
+POST http://admin:senha@127.0.0.1:5984/booked_pesquisas/_index
+Content-Type: application/json
+
+
+{
+  "index": { "fields": ["id_usuario", "data_hora"] },
+  "name": "idx-usuario-data",
+  "type": "json"
+}
+
+
+### DML (Inserção dos Dados)
+
+
+### Inserir pesquisa 001
+PUT http://admin:senha@127.0.0.1:5984/booked_pesquisas/pesquisa_001
+Content-Type: application/json
+
+
+{
+   "_id": "pesquisa_001",
+   "tipo": "pesquisa",
+   "id_usuario": 1,
+   "texto": "Coraline",
+   "filtros": {"categorias": ["fantasia","terror"] },
+   "formato": "ebook",
+   "data_hora": "2026-02-01T09:15:00Z"
+}
+
+
+### Inserir pesquisa 002
+PUT http://admin:senha@127.0.0.1:5984/booked_pesquisas/pesquisa_002
+Content-Type: application/json
+
+
+{
+  "_id": "pesquisa_002",
+  "tipo": "pesquisa",
+  "id_usuario": 2,
+  "texto": "O pequeno príncipe",
+  "filtros": {"categorias": ["drama","romance"] },
+  "formato": "ebook",
+  "data_hora": "2025-12-11T14:30:00Z"
+}
+
+
+### Inserir pesquisa 003
+PUT http://admin:senha@127.0.0.1:5984/booked_pesquisas/pesquisa_003
+Content-Type: application/json
+
+
+{
+  "_id": "pesquisa_003",
+  "tipo": "pesquisa",
+  "id_usuario": 3,
+  "texto": "A garota no lago",
+  "filtros": {},
+  "formato": "livro_fisico",
+  "data_hora": "2026-02-15T11:00:00Z"
+}
+
+
+### Inserir pesquisa 004
+PUT http://admin:senha@127.0.0.1:5984/booked_pesquisas/pesquisa_004
+Content-Type: application/json
+
+
+{
+  "_id": "pesquisa_004",
+  "tipo": "pesquisa",
+  "id_usuario": 4,
+  "texto": "A paciente silenciosa",
+  "filtros": {"categorias": ["suspense"]},
+  "formato": "livro_fisico",
+  "data_hora": "2026-04-18T08:45:00Z"
+}
+
+
+### Inserir pesquisa 005
+PUT http://admin:senha@127.0.0.1:5984/booked_pesquisas/pesquisa_005
+Content-Type: application/json
+
+
+{
+ "_id": "pesquisa_005",
+  "tipo": "pesquisa",
+  "id_usuario": 5,
+  "texto": "Ordem Paranormal: Desconjuração Parte 1",
+  "filtros": {"categorias": ["terror"] },
+  "formato": "livro_fisico",
+  "data_hora": "2026-01-20T16:20:00Z"
+}
+
+
+### Inserir pesquisa 006
+PUT http://admin:senha@127.0.0.1:5984/booked_pesquisas/pesquisa_006
+Content-Type: application/json
+
+
+{
+ "_id": "pesquisa_006",
+  "tipo": "pesquisa",
+  "id_usuario": 1,
+  "texto": "Heartstopper",
+  "filtros": {"categorias": ["lgbt+", "romance"] },
+  "formato": "ebook",
+  "data_hora": "2025-12-24T10:05:00Z"
+}
+
+
+### Inserir pesquisa 007
+PUT http://admin:senha@127.0.0.1:5984/booked_pesquisas/pesquisa_007
+Content-Type: application/json
+
+
+{
+   "_id": "pesquisa_007",
+  "tipo": "pesquisa",
+  "id_usuario": 3,
+  "texto": "Duna",
+  "filtros": {"categorias": ["sci-fi", "fantasia"] },
+  "formato": "livro_fisico",
+  "data_hora": "2026-05-01T19:30:00Z"
+}
 
