@@ -22,7 +22,7 @@ public class OfertaController {
         return ofertaService.listarTodas();
     }
 
-    @GetMapping("/ofertas/anuncio/{idAnuncio}")
+    @GetMapping("/anuncio/{idAnuncio}")
     public List<Oferta> listarPorAnuncio(@PathVariable Integer idAnuncio) {
         return ofertaService.listarPorAnuncio(idAnuncio);
     }

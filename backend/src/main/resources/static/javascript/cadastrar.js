@@ -51,12 +51,10 @@ window.onload = function() {
                     resposta = await fetch(`http://localhost:8080/usuario/buscar/${encodeURIComponent(email)}`);
                     let usuario = await resposta.json();
                     let idUsuario = await usuario.id;
+                    localStorage.setItem("idUsuario", idUsuario);
+                    localStorage.setItem("nomeUsuario", nome)
+                    window.location.href=`/html/index.html`;
 
-                    if(resposta.ok) {
-                        localStorage.setItem("idUsuario", idUsuario);
-                        localStorage.setItem("nomeUsuario", nome)
-                        window.location.href=`/html/index.html`;
-                    }
 
                 }
 

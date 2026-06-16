@@ -11,6 +11,7 @@ window.onload = async function() {
     const usuario = await resposta.json();
 
     // Printar na tela
+    console.log(usuario);
     nome.textContent = localStorage.getItem("nomeUsuario");
     email.textContent = usuario.email;
 
