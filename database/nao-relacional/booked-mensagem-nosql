@@ -1,1 +1,111 @@
+### Banco: booked_mensagem
+### DDL
+
+
+### Para criar o Banco de Dados
+PUT http://admin:senha@127.0.0.1:5984/booked_mensagem
+
+
+### Design Document
+PUT http://admin:senha@127.0.0.1:5984/booked_mensagem/_design/valida_mensagem
+Content-Type: application/json
+
+
+{
+  "validate_doc_update": "function(newDoc, oldDoc, userCtx) { if (newDoc.tipo === 'mensagem') { if (!newDoc.id_usuario1 || !newDoc.id_usuario2) { throw({ forbidden: 'id_usuario é obrigatório' }); } if (!newDoc.texto || newDoc.texto.trim() === '') { throw({ forbidden: 'não pode mensagem vazia' }); } } }"
+}
+
+
+### DML
+### Mensagem 1
+PUT http://admin:senha@127.0.0.1:5984/booked_mensagem/mensagem1
+Content-Type: application/json
+
+
+{
+  "_id": "mensagem1",
+  "id_usuario1": "1",
+  "id_usuario2": "2",
+  "texto": "trocaria por um jornal?",
+  "imagem": "null",
+  "tipo": "mensagem"
+}
+### Mensagem 2
+PUT http://admin:senha@127.0.0.1:5984/booked_mensagem/mensagem2
+Content-Type: application/json
+
+
+{
+  "_id": "mensagem2",
+  "id_usuario1": "2",
+  "id_usuario2": "3",
+  "texto": "teria dobrinhas nas paginas",
+  "imagem": "null",
+  "tipo": "mensagem"
+}
+### Mensagem 3
+PUT http://admin:senha@127.0.0.1:5984/booked_mensagem/mensagem3
+Content-Type: application/json
+
+
+{
+  "_id": "mensagem3",
+  "id_usuario1": "3",
+  "id_usuario2": "4",
+  "texto": "prefere embrulhado pra viagem?",
+  "imagem": "null",
+  "tipo": "mensagem"
+}
+### Mensagem 4
+PUT http://admin:senha@127.0.0.1:5984/booked_mensagem/mensagem4
+Content-Type: application/json
+
+
+{
+  "_id": "mensagem4",
+  "id_usuario1": "4",
+  "id_usuario2": "5",
+  "texto": "ta faltando o marca pagina que vinha com o livro",
+  "imagem": "null",
+  "tipo": "mensagem"
+}
+### Mensagem 5
+PUT http://admin:senha@127.0.0.1:5984/booked_mensagem/mensagem5
+Content-Type: application/json
+
+
+{
+  "_id": "mensagem5",
+  "id_usuario1": "5",
+  "id_usuario2": "1",
+  "texto": "ai, nao gostei, pode trocar de volta?",
+  "imagem": "null",
+  "tipo": "mensagem"
+}
+### Mensagem 6
+PUT http://admin:senha@127.0.0.1:5984/booked_mensagem/mensagem6
+Content-Type: application/json
+
+
+{
+  "_id": "mensagem6",
+  "id_usuario1": "1",
+  "id_usuario2": "2",
+  "texto": "oq que vc achou da leitura?",
+  "imagem": "null",
+  "tipo": "mensagem"
+}
+### Mensagem 7
+PUT http://admin:senha@127.0.0.1:5984/booked_mensagem/mensagem7
+Content-Type: application/json
+
+
+{
+  "_id": "mensagem7",
+  "id_usuario1": "2",
+  "id_usuario2": "3",
+  "texto": "ta otimamente conservado por sinak kskkk",
+  "imagem": "null",
+  "tipo": "mensagem"
+}
 
